@@ -1,0 +1,14 @@
+---
+applications:
+- name: {{ APP_NAME }}
+  buildpack: java_buildpack_offline
+  path: ./target/{{ APP_NAME }}-{{ APP_VERSION }}.{{ BUILD_NUMBER }}.jar 
+  memory: 1G
+  instances: 1
+  domain: {{ DOMAIN }} 
+  health-check-type: none
+  env:
+    SPRING_ACTIVE_PROFILE: cloud
+    spring.application.name: {{ APP_NAME }}
+    OUR_TARGET: {{ PCF_API }}
+    TZ: PST
